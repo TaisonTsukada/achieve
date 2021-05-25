@@ -33,5 +33,8 @@
       </td>
     </tr>
   </table>
-  <%= f.submit '送信', :class => 'btn btn-primary' %>
+  <%= f.submit '送信' %>
+  <button type="button" name="button">
+    <%= link_to "戻る", inquiry_path(@inquiry)%>
+  </button>
 <% end %>
