@@ -19,10 +19,17 @@
       </td>
     </tr>
     <tr>
+      <th>カテゴリー</th>
+      <td>
+        <%= f.hidden_field :category %>
+        <%= @inquiry.category %>
+      </td>
+    </tr>
+    <tr>
       <th>お問い合わせ内容</th>
       <td>
-        <%= f.hidden_field :message %>
-        <%= simple_format(@inquiry.message) %>
+        <%= f.hidden_field :content %>
+        <%= simple_format(@inquiry.content) %>
       </td>
     </tr>
   </table>

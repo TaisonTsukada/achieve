@@ -5,7 +5,8 @@ class InquiryController < ApplicationController
   end
 
   def confirm
-    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
+
+    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :category,:content))
     if @inquiry.valid?
       # OK。確認画面を表示
       render :action => 'confirm'
@@ -16,7 +17,7 @@ class InquiryController < ApplicationController
   end
 
   def thanks
-    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
+    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :category,:content))
     InquiryMailer.received_email(@inquiry).deliver
 
     # 完了画面を表示
