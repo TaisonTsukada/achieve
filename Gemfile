@@ -65,3 +65,4 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'dotenv-rails'
 gem 'rails_12factor', group: :production
+gem 'active_hash'

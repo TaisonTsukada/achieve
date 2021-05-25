@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'inquiry/index'
+  get 'inquiry/confirm'
+  get 'inquiry/thanks'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root to: 'blogs#index'
   resources :blogs
