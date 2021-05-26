@@ -1,0 +1,35 @@
+<%= form_for @inquiry, url: "thanks" do |f| %>
+  <div>
+    <h2>内容確認</h2>
+    <div>
+      <strong>名前</strong>
+      <p>
+        <%= f.hidden_field :name %>
+        <%= @inquiry.name %>
+      </p>
+    </div>
+    <div>
+      <strong>メールアドレス</strong>
+      <p>
+        <%= f.hidden_field :email %>
+        <%= @inquiry.email %>
+      </p>
+    </div>
+    <div>
+      <strong>カテゴリー</strong>
+      <p>
+        <%= f.hidden_field :category %>
+        <%= @inquiry.category %>
+      </p>
+    </div>
+    <div>
+      <strong>内容</strong>
+      <p>
+        <%= f.hidden_field :content %>
+        <%= simple_format(@inquiry.content) %>
+      </p>
+    </div>
+      <%= f.submit '送信する' %>
+      <%= f.submit '戻る', name: 'back' %>
+  </div>
+<% end %>

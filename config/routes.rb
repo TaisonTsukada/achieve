@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+
   devise_for :users
+
+  get 'inquiry'=> 'inquiry#index'
+  post  'inquiry/confirm' => 'inquiry#confirm'
+  post  'inquiry/thanks'  => 'inquiry#thanks'
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root to: 'blogs#index'
   resources :blogs

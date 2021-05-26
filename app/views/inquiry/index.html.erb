@@ -1,0 +1,44 @@
+<%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
+  <div>
+    <h2>お問い合わせ</h2>
+
+      <% if @inquiry.errors.present? %>
+        <div>
+          <strong>入力内容にエラーがあります</strong>
+          <ul>
+            <% @inquiry.errors.each do |attr, error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <div>
+      <strong>名前</strong>
+      <p><%= f.text_field :name%></p>
+    </div>
+    <div>
+      <strong>メールアドレス</strong>
+      <p><%= f.text_field :email %></p>
+    </div>
+    <div>
+      <strong>カテゴリー</strong>
+      <%= f.radio_button :category, :achieve %>
+      <%= f.label :category, "Achieve", {value: :achieve, style: "display: inline-block;"}%>
+
+      <%= f.radio_button :category, :text %>
+      <%= f.label :category, "テキスト", {value: :text, style: "display: inline-block;"} %>
+
+      <%= f.radio_button :category, :info_session %>
+      <%= f.label :category, "説明会", {value: :info_session, style: "display: inline-block;"} %>
+
+      <%= f.radio_button :category, :others %>
+      <%= f.label :category, "その他", {value: :others, style: "display: inline-block;"} %>
+    </div>
+    <div>
+      <strong>内容</strong>
+      <p><%= f.text_area :content %></p>
+    </div>
+      <%= f.submit '確認画面へ' %>
+  </div>
+<% end %>
