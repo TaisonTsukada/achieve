@@ -19,7 +19,7 @@ class InquiryController < ApplicationController
       render action: :index
     else
       InquiryMailer.received_email(@inquiry).deliver
-      render action: thanks
+
     end
 
   end
