@@ -1,42 +1,44 @@
-<%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
-  <div class="page-header">
-    <h1>お問い合わせ</h1>
-  </div>
+<%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
+  <div>
+    <h2>お問い合わせ</h2>
 
-  <% if @inquiry.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <strong>入力内容にエラーがあります</strong>
-      <ul>
-        <% @inquiry.errors.each do |attr, msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+      <% if @inquiry.errors.present? %>
+        <div>
+          <strong>入力内容にエラーがあります</strong>
+          <ul>
+            <% @inquiry.errors.each do |attr, error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <div>
+      <strong>名前</strong>
+      <p><%= f.text_field :name%></p>
     </div>
-  <% end %>
+    <div>
+      <strong>メールアドレス</strong>
+      <p><%= f.text_field :email %></p>
+    </div>
+    <div>
+      <strong>カテゴリー</strong>
+      <%= f.radio_button :category, :achieve %>
+      <%= f.label :category, "Achieve", {value: :achieve, style: "display: inline-block;"}%>
 
-  <table class="table">
-    <tr>
-      <th>名前</th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th>カテゴリー</th>
-      <td><%= f.radio_button :category, "Achieve"%>Achieve</td>
-      <td><%= f.radio_button :category, "テキスト"%>テキスト</td>
-      <td><%= f.radio_button :category, "説明会"%>説明会</td>
-      <td><%= f.radio_button :category, "その他"%>その他</td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <th></th>
-    </tr>
-    <tr>
-      <th>内容</th>
-      <td><%= f.text_area :content %></td>
-    </tr>
-  </table>
-  <%= f.submit '確認', class: 'btn btn-primary' %>
+      <%= f.radio_button :category, :text %>
+      <%= f.label :category, "テキスト", {value: :text, style: "display: inline-block;"} %>
+
+      <%= f.radio_button :category, :info_session %>
+      <%= f.label :category, "説明会", {value: :info_session, style: "display: inline-block;"} %>
+
+      <%= f.radio_button :category, :others %>
+      <%= f.label :category, "その他", {value: :others, style: "display: inline-block;"} %>
+    </div>
+    <div>
+      <strong>内容</strong>
+      <p><%= f.text_area :content %></p>
+    </div>
+      <%= f.submit '確認画面へ' %>
+  </div>
 <% end %>
