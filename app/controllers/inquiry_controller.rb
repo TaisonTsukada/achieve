@@ -7,22 +7,21 @@ class InquiryController < ApplicationController
 
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.valid?
-      # OK。確認画面を表示
-      render :action => 'confirm'
+      render action: :confirm
     else
-      # NG。入力画面を再表示
-      render :action => 'index'
+      render action: :index
     end
   end
 
   def thanks
     @inquiry = Inquiry.new(inquiry_params)
     if params[:back]
-      render :action => 'index'
+      render action: :index
     else
       InquiryMailer.received_email(@inquiry).deliver
-      render :action => 'thanks'
+      render action: thanks
     end
+
   end
 
   private
