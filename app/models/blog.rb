@@ -2,6 +2,7 @@ class Blog < ApplicationRecord
   validates :title, presence: true
   validates :content,presence: true, length: {maximum: 140}
   belongs_to :user,dependent: :destroy
+  has_many :comments
   paginates_per 10
 
   scope :index_all, -> {
