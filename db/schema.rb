@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 2021_05_28_064848) do
 
   create_table "comments", charset: "utf8mb3", force: :cascade do |t|
     t.string "text", null: false
-    t.bigint "blogs_id", null: false
+    t.bigint "blog_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["blogs_id"], name: "index_comments_on_blogs_id"
+    t.index ["blog_id"], name: "index_comments_on_blog_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -85,6 +85,6 @@ ActiveRecord::Schema.define(version: 2021_05_28_064848) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "users"
-  add_foreign_key "comments", "blogs", column: "blogs_id"
+  add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
 end
