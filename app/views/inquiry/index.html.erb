@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
   <div>
     <h2>お問い合わせ</h2>
@@ -15,11 +16,11 @@
 
     <div>
       <strong>名前</strong>
-      <p><%= f.text_field :name%></p>
+      <p><%= f.text_field :name, class: "form-control"%></p>
     </div>
     <div>
       <strong>メールアドレス</strong>
-      <p><%= f.text_field :email %></p>
+      <p><%= f.text_field :email , class: "form-control"%></p>
     </div>
     <div>
       <strong>カテゴリー</strong>
@@ -37,8 +38,9 @@
     </div>
     <div>
       <strong>内容</strong>
-      <p><%= f.text_area :content %></p>
+      <p><%= f.text_area :content,class:"form-control", rows: "10" %></p>
     </div>
-      <%= f.submit '確認画面へ' %>
+      <%= f.submit '確認画面へ', class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>

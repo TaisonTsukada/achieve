@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post  'inquiry/thanks'  => 'inquiry#thanks'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  root to: 'blogs#index'
+  root to: 'blogs#home'
   resources :blogs
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

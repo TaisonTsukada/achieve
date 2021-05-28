@@ -2,20 +2,25 @@
 
 <div class="container">
   <div id="new-blog-link">
-    <%= link_to '新規ブログを作成する', new_blog_path %>
+    <%= link_to '新規ブログを作成する', new_blog_path, class: 'btn btn-primary'%>
   </div>
 
   <div class="row">
     <% @blogs.each do |blog| %>
-      <div class="blog-panel">
+      <div class="col-xs-12 col-md-6 blog-panel">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
         <h2><%= blog.title %></h2>
         <p><%= blog.content %></p>
         <p><%= blog.created_at %></p>
         <div class="blog-links">
-          <%= link_to 'Show', blog, class: 'btn btn-default' %>
-          <%= link_to 'Edit', edit_blog_path(blog), class: 'btn btn-info' %> |
+          <%= link_to 'Show', blog, class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_blog_path(blog), class: 'btn btn-primary' %> |
           <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div>
+      </div>
+      </div>
+      </div>
       </div>
     <% end %>
   </div>
