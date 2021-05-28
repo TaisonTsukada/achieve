@@ -9,6 +9,8 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1 or /blogs/1.json
   def show
+    @comment = Comment.new
+    @comments = @blog.comments.includes(:user)
   end
 
   # GET /blogs/new

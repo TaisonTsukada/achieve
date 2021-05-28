@@ -12,3 +12,72 @@
 footer {
     background-color: black;
 }
+
+.blog__wrapper{
+    min-height: calc(100vh - 161px);
+}
+.blog__hedding{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.blog__user{
+    display: block;
+    font-size: 16px;
+    color: #999;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.blog__detail{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+.detail__title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.blog__manage{
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+.blog_btn{
+    display: block;
+    padding: 0.4em 1.6em;
+    font-size: 0.4em;
+    color: #999;
+    text-decoration: none;
+    user-select: none;
+    border: 1px #999 solid;
+    border-radius: 3px;
+    transition: 0.4s ease;
+    margin: 0 4px;
+}
+.blog__btn:hover{
+    color: #fff;
+    background: #999;
+}
+
+.blog_comments{
+    background-color: #f6f6f6;
+    padding: 20px;
+    margin: 28px 0 40px 0;
+}
+
+.comments_lists{
+    padding-left: 20px;
+}
+
+.comments_list{
+    list-style-type: square;
+    padding-bottom: 5px;
+}
+
+.comment_user{
+    font-size: 16px;
+    color: #999;
+    text-decoration: underline;
+}

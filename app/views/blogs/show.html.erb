@@ -1,16 +1,51 @@
-<div class="container">
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @blog.content %>
-</p>
-
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
-</div>
+<main class="main">
+  <div class="inner">
+    <div class="blog__wrapper">
+      <p class="blog__hedding">
+        <%= "#{@blog.title}"%>
+      </p>
+      <%= link_to "by #{@blog.user.name}", "/users/#{@blog.user.id}", class: :blog__user %>
+      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && current_user.id == @blog.user_id %>
+        <div class="blog__manage">
+          <%= link_to "編集する", edit_blog_path(@blog.id), class: :blog__btn %>
+          <%= link_to "削除する", blog_path(@blog.id), class: :blog__btn, method: :delete %>
+        </div>
+      <% end %>
+      <div class="blog__body">
+        <div class="blog__detail">
+          <p class="detail__title">Content</p>
+          <p class="detail__message">
+            <%= "#{@blog.content}" %>
+          </p>
+        </div>
+      </div>
+      <div class="blog__comments">
+        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
+        <% if user_signed_in? %>
+          <%= form_with(model: [@blog, @comment], local: true) do |f|%>
+            <div class="field">
+              <%= f.label :text, "コメント" %><br />
+              <%= f.text_field :text %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            </div>
+          <% end %>
+        <% end %>
+        <%# // ログインしているユーザーには上記を表示する %>
+        <ul class="comments_lists">
+          <%# 投稿に紐づくコメントを一覧する処理を記述する %>
+          <% @comments.each do |comment| %>
+            <li class="comments_list">
+              <%= comment.text%>
+              <%= link_to "削除", blog_comment_path(@blog.id, comment.id), class: "btn btn-primary", method: "delete"%>
+              <%= link_to "#{comment.user.name}", "/users/#{@blog.user.id}", class: :comment_user %>
+            </li>
+          <% end %>
+          <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
