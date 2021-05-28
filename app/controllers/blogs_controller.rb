@@ -1,10 +1,10 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create,:new,:edit,:update]
 
   # GET /blogs or /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.index_all.page(params[:page])
   end
 
   # GET /blogs/1 or /blogs/1.json
@@ -23,6 +23,7 @@ class BlogsController < ApplicationController
   # POST /blogs or /blogs.json
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id
 
     respond_to do |format|
       if @blog.save
