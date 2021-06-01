@@ -11,6 +11,8 @@ class BlogsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @blog.comments.includes(:user)
+
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   # GET /blogs/new

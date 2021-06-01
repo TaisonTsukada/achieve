@@ -20,6 +20,13 @@
           </p>
         </div>
       </div>
+      <% unless @blog.user == current_user %>
+        <% if @favorite.present? %>
+          <%= link_to 'お気に入り解除する', favorite_path(@favorite), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'お気に入りする', favorites_path(@blog.id), method: :post, class: 'btn btn-default' %>
+        <% end %>
+      <% end %>
       <div class="blog__comments">
         <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
         <% if user_signed_in? %>
