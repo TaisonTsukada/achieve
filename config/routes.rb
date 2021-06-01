@@ -9,9 +9,15 @@ Rails.application.routes.draw do
   root to: 'blogs#home'
   resources :blogs do
     resources :comments, only: [:create,:destroy,:edit]
-    resources :favorites, only: [:create, :destroy, :index]
   end
-  resources :user, only: [:index]
+  resources :favorites, only: [:create, :destroy]
+  resources :user, only: [:index]do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+
 
   get "user/all_favorites" => 'user#all_favorites'
 

@@ -1,11 +1,13 @@
 class RelationshipsController < ApplicationController
+    before_action :authenticate_user!
     def create
-        follow = current_user.active_relationships.create(user_id: params[:user_id])
-        redirect_to user_index_path
+        @user = User.find(params[:relationship][:followed_id])
+        current_user.follow!(@user)
+        redirect_to blogs_path
     end
     def destroy
-        unfollow = current_user.active_relationships.find_by(user_id: params[:user_id]).destroy
-        redirect_to user_index_path
-
+        @user = Relationship.find(params[:id]).followed
+        current_user.unfollow!(@user)
+        redirect_to blogs_path
     end
 end

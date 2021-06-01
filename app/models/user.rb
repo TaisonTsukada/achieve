@@ -15,8 +15,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   paginates_per 10
 
-  scope :user_all, -> {
-    select(:id, :name)
+  def following?(other_user)
+    active_relationships.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    active_relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+
+  scope :user_all, -> (user){
+    where.not(id: user.id)
+    .select(:id, :name)
     .order(created_at: :asc)
   }
 end

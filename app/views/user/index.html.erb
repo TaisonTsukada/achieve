@@ -1,3 +1,4 @@
 <% @users.each do |user|%>
-    <p><%user.name%></p>
+    <p><%=user.name%></p>
+    <%= render partial: "follow_form", locals: { user: user } %>
 <%end%>
