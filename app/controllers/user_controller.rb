@@ -3,6 +3,6 @@ class UserController < ApplicationController
         @users = User.user_all.page(params[:page])
     end
     def all_favorites
-        @blogs = User.all_favorites
+        @blogs = current_user.all_favorites
     end
 end
