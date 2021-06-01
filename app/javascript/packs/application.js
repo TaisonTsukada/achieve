@@ -9,6 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap'
 import '../stylesheets/application'
+import '../underscore'
+import 'gmaps/google'
 
 Rails.start()
 Turbolinks.start()
